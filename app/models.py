@@ -5,7 +5,6 @@ from django.utils.html import mark_safe
 from django.db.models.signals import post_save
 from django.conf import settings
 from django.core.mail import send_mail
-from crum import get_current_user   
 # Create your models here.
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
@@ -54,8 +53,7 @@ class ImageTable(models.Model):
 def send_email(sender, **kwargs):
     if kwargs['instance'].Food_group == 'unknown':
         email_subject = 'Unknown image added'
-        htmlgen = f"You have added unknown image. Please check the image and add it to the database."
-        print('hi', kwargs['instance'].kid.name)
+        htmlgen = f"hi, {kwargs['instance'].kid.name} \n You have added unknown image. Please check the image and add it to the database."
         print(send_mail( email_subject, htmlgen, settings.EMAIL_HOST_USER, [kwargs['instance'].kid.email], fail_silently=False))
 post_save.connect(send_email, sender=ImageTable)
 
