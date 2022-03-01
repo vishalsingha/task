@@ -1,5 +1,8 @@
 from django.contrib import admin
 from .models import *
+from django.utils.html import format_html
+
+
 # Register your models here.
 
 admin.site.site_header = "Intern Assignment"
@@ -8,7 +11,6 @@ admin.site.index_title = "Welcome to Food Admin Panel"
 
 
 
-from django.utils.html import format_html
 
 
 admin.site.register(KidTable)
